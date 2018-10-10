@@ -14,11 +14,9 @@ console.log('encrypted with A: ', ciphertextA.toString())
 console.log('------');
 console.log('------');
 var ciphertextB = CryptoJS.AES.encrypt(plainText, keyB);
-console.log('encrypted with B: ', ciphertextA.toString())
+console.log('encrypted with B: ', ciphertextB.toString())
 console.log('------');
 console.log('------');
-
-
 
 // Decrypt
 var bytes  = CryptoJS.AES.decrypt(ciphertextA.toString(), keyA);
@@ -30,7 +28,7 @@ console.log('------');
 
 // Decrypt
 var bytesAB  = CryptoJS.AES.decrypt(ciphertextA.toString(), keyB);
-var decryptedTextAB = bytes.toString(CryptoJS.enc.Utf8);
+var decryptedTextAB = bytesAB.toString(CryptoJS.enc.Utf8);
 console.log('decrypted with wrong key Text: ', decryptedTextAB);
 console.log('------');
 console.log('------');
@@ -38,19 +36,28 @@ console.log('------');
 
 // encrypt cipher-text A with Key B:
 var ciphertextAB = CryptoJS.AES.encrypt(ciphertextA.toString(), keyB);
-console.log('double encrypted ciphertext: ', ciphertextAB.toString())
+console.log('encrypted with A encrypted with B: ', ciphertextAB.toString())
 console.log('------');
 console.log('------');
 
+// decrypt AB with B
+var bytesC  = CryptoJS.AES.decrypt(ciphertextAB.toString(), keyB);
+var decryptedTextC = bytesC.toString(CryptoJS.enc.Utf8);
+console.log('the above decrypted by B', decryptedTextC)
+
 // decrypt cipher-text AB with key A:
 var decryptedWithA = CryptoJS.AES.decrypt(ciphertextAB.toString(), keyA).toString(CryptoJS.enc.Utf8);
+console.log('------');
+console.log('------');
+console.log('decrypted by A:',decryptedWithA)
 // now decrypt it with key B:
 var decryptedWithB = CryptoJS.AES.decrypt(decryptedWithA.toString(), keyA).toString(CryptoJS.enc.Utf8);
 console.log('------');
 console.log('------');
 
 console.log('decrypted by keys A and B:  ', decryptedWithB);
-
+console.log('------');
+console.log('------');
 
 
 
