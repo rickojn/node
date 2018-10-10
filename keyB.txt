@@ -1,0 +1,2 @@
+openssl rand -base64 -out keyB.txt 32
+PwU9uyHmdyDI9Mtqy3ElTHhWGKp/8NQU3k8+8rjVCuw=
